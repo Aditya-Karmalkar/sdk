@@ -2,6 +2,7 @@
   "name": "mapify-os-sdk",
   "version": "1.0.0",
   "description": "JavaScript SDK for Mapify OS - Embed interactive maps with place details",
+  "type": "module",
   "main": "dist/mapify.js",
   "scripts": {
     "build": "rollup -c",
