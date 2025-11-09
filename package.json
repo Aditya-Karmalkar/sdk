@@ -6,7 +6,7 @@
   "main": "dist/mapify.js",
   "scripts": {
     "build": "rollup -c",
-    "copy": "copy-files.bat",
+    "copy": "cpy \"dist/*.js\" public/",
     "dev": "rollup -c -w",
     "clean": "rimraf dist public/mapify.js public/mapify.min.js",
     "deploy": "pnpm run build && pnpm run copy"
@@ -24,6 +24,7 @@
     "@rollup/plugin-commonjs": "^25.0.8",
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@rollup/plugin-terser": "^0.4.4",
+    "cpy-cli": "^6.0.0",
     "rimraf": "^5.0.10",
     "rollup": "^3.29.5"
   },
