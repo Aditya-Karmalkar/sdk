@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapify OS SDK - Basic Example</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #2563eb;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .header p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .map-container {
+            height: 500px;
+            position: relative;
+        }
+        
+        .instructions {
+            padding: 20px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            color: #1e293b;
+        }
+        
+        .instructions ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin: 5px 0;
+            color: #64748b;
+        }
+        
+        .api-key-notice {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .api-key-notice strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ Mapify OS SDK - Basic Example</h1>
+            <p>Click anywhere on the map to get place details</p>
+        </div>
+        
+        <div class="instructions">
+            <div class="api-key-notice">
+                <strong>⚠️ API Key Required:</strong> Replace "your-api-key-here" in the code below with your actual API key from the Mapify OS dashboard.
+            </div>
+            
+            <h3>How to use:</h3>
+            <ul>
+                <li>Click anywhere on the map to get detailed place information</li>
+                <li>Use the layer control (if enabled) to switch between map styles</li>
+                <li>Zoom and pan to explore different areas</li>
+                <li>Copy addresses directly from the popup</li>
+            </ul>
+        </div>
+        
+        <div id="map" class="map-container"></div>
+    </div>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Mapify OS SDK -->
+    <script src="../dist/mapify.js"></script>
+    
+    <script>
+        // Initialize the map
+        MapifyOS.init("map", {
+            apiKey: "your-api-key-here", // Replace with your actual API key
+            center: [40.7128, -74.0060], // New York City
+            zoom: 13,
+            layer: "plain",
+            enableSearch: true,
+            enableLayerControl: true
+        }).then(mapInstance => {
+            console.log("✅ Map initialized successfully!");
+            
+            // Listen for place clicks
+            mapInstance.on("placeClick", (data) => {
+                console.log("📍 Place clicked:", data.data.name);
+                console.log("📊 Full data:", data);
+            });
+            
+            // Listen for layer changes
+            mapInstance.on("layerChange", (data) => {
+                console.log("🎨 Layer changed to:", data.layer);
+            });
+            
+            // Listen for view changes
+            mapInstance.on("viewChange", (data) => {
+                console.log("👀 View changed:", data.center, "zoom:", data.zoom);
+            });
+            
+        }).catch(error => {
+            console.error("❌ Failed to initialize map:", error);
+            
+            // Show error message to user
+            const mapContainer = document.getElementById('map');
+            mapContainer.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #fee2e2; color: #dc2626; text-align: center; padding: 20px;">
+                    <div>
+                        <h3>❌ Map Initialization Failed</h3>
+                        <p>${error.message}</p>
+                        <p style="font-size: 14px; margin-top: 10px;">
+                            Make sure you have a valid API key and internet connection.
+                        </p>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "mapify-os-sdk",
+  "version": "1.0.0",
+  "description": "JavaScript SDK for Mapify OS - Embed interactive maps with place details",
+  "main": "dist/mapify.js",
+  "scripts": {
+    "build": "rollup -c",
+    "copy": "copy-files.bat",
+    "dev": "rollup -c -w",
+    "clean": "rimraf dist public/mapify.js public/mapify.min.js",
+    "deploy": "pnpm run build && pnpm run copy"
+  },
+  "keywords": [
+    "maps",
+    "leaflet",
+    "sdk",
+    "javascript",
+    "mapify"
+  ],
+  "author": "Mapify OS",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.8",
+    "@rollup/plugin-node-resolve": "^15.3.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rimraf": "^5.0.10",
+    "rollup": "^3.29.5"
+  },
+  "peerDependencies": {
+    "leaflet": "^1.9.0"
+  }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapify OS SDK</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f8fafc;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+        .version {
+            color: #64748b;
+            margin-bottom: 32px;
+        }
+        .links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 32px;
+        }
+        .link {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        .link:hover {
+            background: #1d4ed8;
+        }
+        .code {
+            background: #f1f5f9;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 24px 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗺️ Mapify OS SDK</h1>
+        <p class="version">Version 1.0.0</p>
+        
+        <p>JavaScript SDK for embedding interactive maps with place details</p>
+        
+        <div class="code">
+            &lt;script src="https://mapify-sdk.netlify.app/v1/mapify.js"&gt;&lt;/script&gt;<br>
+            &lt;script&gt;<br>
+            &nbsp;&nbsp;MapifyOS.init("map", { apiKey: "your-key" });<br>
+            &lt;/script&gt;
+        </div>
+        
+        <div class="links">
+            <a href="/v1/mapify.js" class="link">📦 SDK (Dev)</a>
+            <a href="/v1/mapify.min.js" class="link">📦 SDK (Min)</a>
+            <a href="https://github.com/mapifyos/sdk" class="link">📚 Documentation</a>
+        </div>
+    </div>
+</body>
+</html>

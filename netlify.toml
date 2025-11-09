@@ -1,0 +1,33 @@
+[build]
+  publish = "public"
+  command = "pnpm run build && pnpm run copy"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Redirects for clean URLs
+[[redirects]]
+  from = "/v1/mapify.js"
+  to = "/mapify.js"
+  status = 200
+
+[[redirects]]
+  from = "/v1/mapify.min.js"
+  to = "/mapify.min.js"
+  status = 200
+
+# CORS headers for SDK files
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=3600"
+    Content-Type = "application/javascript"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
