@@ -1,3 +1,5 @@
+**Commit on OSCG Branch**
+
 # Mapify OS SDK
 
 The official JavaScript SDK for Mapify OS - embed interactive maps with place details in your web applications.
